@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>clock</title>
+    <link rel="stylesheet" href="stylee.css">
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"> </div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+
+    <div class="toggleclass" onclick="toggleclass()">
+
+    </div>
+
+
+    <div id="clock1">
+        <h1>the time is now</h1>
+        <div id="time">
+            <div><span id="hours">00</span><span>Hours</span></div>
+            <div><span id="minutes">00</span><span>Minutes</span></div>
+            <div><span id="seconds">00</span><span>Seconds</span></div>
+            <div><span id="ampm">AM</span></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function clock() {
+            var hours = document.getElementById('hours');
+            var minutes = document.getElementById('minutes');
+            var seconds = document.getElementById('seconds');
+            var ampm = document.getElementById('ampm');
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+            var am = "AM";
+            if (h > 12) {
+                h = h - 12;
+                var am = "PM";
+            }
+            h = (h < 10) ? "0 " + h : h
+            m = (h < 10) ? "0" + m : m
+            s = (h < 10) ? "0" + s : s
+
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am;
+        }
+        var interval = setInterval(clock, 1000);
+    </script>
+
+    <script>
+        const hour = document.querySelector('#hr');
+        const minute = document.querySelector('#mn');
+        const second = document.querySelector('#sc');
+        const deg = 6;
+
+        function time() {
+            const date = new Date();
+
+            const sec = date.getSeconds() * deg;
+            /*const secDegree = ((sec / 60) * 360) + 90;*/
+            second.style.transform = `rotate(${sec}deg)`;
+            /*second.innerText = secDegree;*/
+
+            const min = date.getMinutes() * deg;
+            /*const minDegree = ((min / 60) * 360) + 90;*/
+            minute.style.transform = `rotate(${min}deg)`;
+            /*minute.innerText = minDegree;*/
+
+
+            const hr = date.getHours();
+            var hourDegree = 0;
+            if (hr == 1 || hr == 13) {
+                hourDegree = 210 + (min / 12);
+            }
+            if (hr == 2 || hr == 14) {
+                hourDegree = 240 + (min / 12);
+            }
+            if (hr == 3 || hr == 15) {
+                hourDegree = 270 + (min / 12);
+            }
+            if (hr == 4 || hr == 16) {
+                hourDegree = 300 + (min / 12);
+            }
+            if (hr == 5 || hr == 17) {
+                hourDegree = 330 + (min / 12);
+            }
+            if (hr == 6 || hr == 18) {
+                hourDegree = 360 + (min / 12);
+            }
+            if (hr == 7 || hr == 19) {
+                hourDegree = 30 + (min / 12);
+            }
+            if (hr == 8 || hr == 20) {
+                hourDegree = 60 + (min / 12);
+            }
+            if (hr == 9 || hr == 21) {
+                hourDegree = 90 + (min / 12);
+            }
+            if (hr == 10 || hr == 22) {
+                hourDegree = 120 + (min / 12);
+            }
+            if (hr == 11 || hr == 23) {
+                hourDegree = 150 + (min / 12);
+            }
+            if (hr == 12 || hr == 00) {
+                hourDegree = 180 + (min / 12);
+            }
+
+
+            hour.style.transform = `rotate(${hourDegree}deg)`;
+            hour.innerText = hr;
+        }
+
+
+        setInterval(time, 1000);
+    </script>
+    <script>
+        function toggleclass() {
+            const body = document.querySelector('body');
+            body.classList.toggle('light');
+        }
+    </script>
+</body>
+
+</html>
